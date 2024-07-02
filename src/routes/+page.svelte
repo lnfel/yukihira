@@ -33,7 +33,7 @@
         </div>
         <img src="./img/sushi_2.jpg" alt="Yukihira sushi" width="1000" height="667" class="w-full h-dvh object-cover overflow-hidden">
     </section>
-    <section id="about" class="h-dvh content-center bg-[url('img/pagoda.png')] bg-left-bottom bg-no-repeat">
+    <section id="about" class="h-dvh content-center bg-[url('/img/pagoda.png')] bg-left-bottom bg-no-repeat">
         <div class="w-4/6 h-4/6 relative left-1/2 -translate-x-1/2">
             <!-- w-10/12 h-3/6 md:h-4/6 -->
             <div class="w-full h-full absolute -top-10 md:-top-5 bg-saddle-300 rounded-md shadow-md"></div>
@@ -52,12 +52,12 @@
             </div>
         </div>
     </section>
-    <section id="sushi" class="md:flex md:items-center md:justify-center md:h-[150dvh] bg-[url('img/cooking-features.jpg')] bg-[#5e4138] bg-center bg-contain bg-no-repeat py-20">
+    <section id="sushi" class="md:flex md:items-center md:justify-center md:h-[150dvh] bg-[url('/img/cooking-features.jpg')] bg-[#5e4138] bg-center bg-contain bg-no-repeat py-20">
         <div class="md:w-9/12 md:relative w-full h-full flex flex-col-reverse items-center">
             <div class="w-3/6 md:w-fit md:absolute md:top-20 md:-left-10 md:bg-saddle-900 rounded-md md:shadow-md">
                 <img src="{base}/img/sushi_4.png" alt="Sushi" width="475" height="371" class="object-contain">
             </div>
-            <div class="max-w-[40ch] md:max-w-full md:w-3/6 md:h-1/2 md:absolute md:top-0 md:right-10 lg:right-20 content-center md:bg-[url('img/live-food.jpg')] bg-cover bg-no-repeat rounded-md md:shadow-md py-4">
+            <div class="max-w-[40ch] md:max-w-full md:w-3/6 md:h-1/2 md:absolute md:top-0 md:right-10 lg:right-20 content-center md:bg-[url('/img/live-food.jpg')] bg-cover bg-no-repeat rounded-md md:shadow-md py-4">
                 <div class="px-4 space-y-6">
                     <h2 class="relative text-3xl text-saddle-100 tracking-wider py-6 after:absolute after:bottom-0 after:left-0 after:w-10 md:after:w-20 after:border-b-4 after:border-saddle-400">
                         Live food bar
@@ -65,7 +65,7 @@
                     <p class="text-saddle-100">Yukihira is first to introduce the unique acquarium system designed based on the owner's personal project.</p>
                 </div>
             </div>
-            <div class="max-w-[40ch] md:max-w-full md:w-3/6 md:h-1/2 md:absolute md:-bottom-0 md:left-0 content-center md:bg-[url('img/cooking-traditions.jpg')] bg-cover bg-no-repeat md:rounded-md md:shadow-md py-4">
+            <div class="max-w-[40ch] md:max-w-full md:w-3/6 md:h-1/2 md:absolute md:-bottom-0 md:left-0 content-center md:bg-[url('/img/cooking-traditions.jpg')] bg-cover bg-no-repeat md:rounded-md md:shadow-md py-4">
                 <div class="px-4 space-y-6">
                     <h2 class="relative text-3xl text-saddle-100 tracking-wider py-6 after:absolute after:bottom-0 after:left-0 after:w-10 md:after:w-20 after:border-b-4 after:border-saddle-400">
                         Cooking traditions
