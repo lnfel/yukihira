@@ -2,6 +2,7 @@
     import '$lib/app.css'
 
     import { base } from '$app/paths'
+    import { onMount } from 'svelte'
 
     let { children } = $props()
 
@@ -20,6 +21,25 @@
             })
         }
     }
+
+    async function detectSWUpdate() {
+        const registration = await navigator.serviceWorker.ready
+        registration.addEventListener('updatefound', () => {
+            const newSW = registration.installing
+            newSW?.addEventListener('statechange', () => {
+                if (newSW.state === 'installed') {
+                    if (confirm('New update available! Reload the page to use the latest version of the app?')) {
+                        newSW.postMessage({ type: 'SKIP_WAITING' })
+                        // location.reload() // no need this one
+                    }
+                }
+            })
+        })
+    }
+
+    onMount(() => {
+        detectSWUpdate()
+    })
 </script>
 
 <svelte:head>
