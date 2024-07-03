@@ -35,14 +35,13 @@
     </section>
     <section id="about" class="h-dvh content-center bg-[url('/img/pagoda.png')] bg-left-bottom bg-no-repeat">
         <div class="w-4/6 h-4/6 relative left-1/2 -translate-x-1/2">
-            <!-- w-10/12 h-3/6 md:h-4/6 -->
-            <div class="w-full h-full absolute -top-10 md:-top-5 bg-saddle-300 rounded-md shadow-md"></div>
-            <div class="w-full h-full absolute top-10 md:top-5 -right-10 md:-right-20 shadow-md">
+            <div class="about-card-bg w-full h-full absolute -top-10 md:-top-5 bg-saddle-300 rounded-md shadow-md"></div>
+            <div class="about-card-img w-full h-full absolute top-10 md:top-5 -right-10 md:-right-20 shadow-md">
                 <div class="w-full h-full relative overflow-hidden rounded-md before:absolute before:inset-0 before:bg-slate-800/70">
                     <img src="{base}/img/sushi_3.jpg" alt="Sushi" width="1500" height="994" class="w-full h-full object-cover">
                 </div>
             </div>
-            <div class="w-full md:w-1/2 h-full md:h-5/6 absolute md:top-12 -left-10 md:-left-20 text-center content-center rounded-md shadow-md backdrop-blur-sm bg-saddle-800/90 space-y-6 p-4">
+            <div class="about-card-text w-full md:w-1/2 h-full md:h-5/6 absolute md:top-12 -left-10 md:-left-20 text-center content-center rounded-md shadow-md backdrop-blur-sm bg-saddle-800/90 space-y-6 p-4">
                 <h2 class="text-3xl text-saddle-100 tracking-wider">
                     <span class="border-t-2 border-b-2 border-saddle-100">Yukihira</span>
                 </h2>
@@ -54,10 +53,10 @@
     </section>
     <section id="sushi" class="md:flex md:items-center md:justify-center md:h-[150dvh] bg-[url('/img/cooking-features.jpg')] bg-[#5e4138] bg-center bg-contain bg-no-repeat py-20">
         <div class="md:w-9/12 md:relative w-full h-full flex flex-col-reverse items-center">
-            <div class="w-3/6 md:w-fit md:absolute md:top-20 md:-left-10 md:bg-saddle-900 rounded-md md:shadow-md">
+            <div class="sushi-card-img w-3/6 md:w-fit md:absolute md:top-20 md:-left-10 md:bg-saddle-900 rounded-md md:shadow-md">
                 <img src="{base}/img/sushi_4.png" alt="Sushi" width="475" height="371" class="object-contain">
             </div>
-            <div class="max-w-[40ch] md:max-w-full md:w-3/6 md:h-1/2 md:absolute md:top-0 md:right-10 lg:right-20 content-center md:bg-[url('/img/live-food.jpg')] bg-cover bg-no-repeat rounded-md md:shadow-md py-4">
+            <div class="sushi-card-live-food max-w-[40ch] md:max-w-full md:w-3/6 md:h-1/2 md:absolute md:top-0 md:right-10 lg:right-20 content-center md:bg-[url('/img/live-food.jpg')] bg-cover bg-no-repeat rounded-md md:shadow-md py-4">
                 <div class="px-4 space-y-6">
                     <h2 class="relative text-3xl text-saddle-100 tracking-wider py-6 after:absolute after:bottom-0 after:left-0 after:w-10 md:after:w-20 after:border-b-4 after:border-saddle-400">
                         Live food bar
@@ -65,7 +64,7 @@
                     <p class="text-saddle-100">Yukihira is first to introduce the unique acquarium system designed based on the owner's personal project.</p>
                 </div>
             </div>
-            <div class="max-w-[40ch] md:max-w-full md:w-3/6 md:h-1/2 md:absolute md:-bottom-0 md:left-0 content-center md:bg-[url('/img/cooking-traditions.jpg')] bg-cover bg-no-repeat md:rounded-md md:shadow-md py-4">
+            <div class="sushi-card-cooking-traditions max-w-[40ch] md:max-w-full md:w-3/6 md:h-1/2 md:absolute md:-bottom-0 md:left-0 content-center md:bg-[url('/img/cooking-traditions.jpg')] bg-cover bg-no-repeat md:rounded-md md:shadow-md py-4">
                 <div class="px-4 space-y-6">
                     <h2 class="relative text-3xl text-saddle-100 tracking-wider py-6 after:absolute after:bottom-0 after:left-0 after:w-10 md:after:w-20 after:border-b-4 after:border-saddle-400">
                         Cooking traditions
@@ -73,7 +72,7 @@
                     <p class="text-saddle-100">The secret of success of Japanese cuisine opens with best quality ingredients, beautiful courses presentation and respectful attitude both to the product and to the work with it.</p>
                 </div>
             </div>
-            <div class="hidden md:block max-w-[40ch] md:max-w-full md:w-3/6 md:h-1/2 md:absolute md:bottom-0 lg:-bottom-10 md:right-[0rem] lg:right-0 xl:right-10 content-center">
+            <div class="sushi-card-quote hidden md:block max-w-[40ch] md:max-w-full md:w-3/6 md:h-1/2 md:absolute md:bottom-0 lg:-bottom-10 md:right-[0rem] lg:right-0 xl:right-10 content-center">
                 <div class="w-full flex justify-center">
                     <p class="max-w-[5ch] text-2xl text-saddle-100 tracking-widest">Japanese traditions and excellence of taste</p>
                 </div>
@@ -179,5 +178,76 @@
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
+    }
+
+    /**
+     * https://www.youtube.com/watch?v=Qj0Qx8HpNUo
+     * https://developer.mozilla.org/en-US/docs/Web/CSS/animation-timeline
+     */
+    .about-card-bg,
+    .sushi-card-img,
+    .sushi-card-quote {
+        animation-timeline: view();
+        animation-name: slide-from-bottom;
+        animation-fill-mode: both;
+        animation-duration: 1ms;
+    }
+
+    @keyframes slide-from-bottom {
+        from {
+            translate: 0rem 10rem;
+        }
+
+        50% {
+            translate: 0rem;
+        }
+
+        to {
+            translate: 0rem;
+        }
+    }
+
+    .about-card-img,
+    .sushi-card-live-food {
+        animation-timeline: view();
+        animation-name: slide-from-right;
+        animation-fill-mode: both;
+        animation-duration: 1ms;
+    }
+
+    @keyframes slide-from-right {
+        from {
+            translate: 10rem;
+        }
+
+        50% {
+            translate: 0rem;
+        }
+
+        to {
+            translate: 0rem;
+        }
+    }
+
+    .about-card-text,
+    .sushi-card-cooking-traditions {
+        animation-timeline: view();
+        animation-name: slide-from-left;
+        animation-fill-mode: both;
+        animation-duration: 1ms;
+    }
+
+    @keyframes slide-from-left {
+        from {
+            translate: -10rem;
+        }
+
+        50% {
+            translate: 0rem;
+        }
+
+        to {
+            translate: 0rem;
+        }
     }
 </style>
