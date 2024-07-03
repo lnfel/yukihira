@@ -9,18 +9,20 @@
         <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" as="style">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
 		
-		<link rel="modulepreload" href="/yukihira/_app/immutable/entry/start.sS5N3WLi.js">
-		<link rel="modulepreload" href="/yukihira/_app/immutable/chunks/entry.DaRqFUXE.js">
+		<link rel="modulepreload" href="/yukihira/_app/immutable/entry/start.BdZFVP2U.js">
+		<link rel="modulepreload" href="/yukihira/_app/immutable/chunks/entry.Cmc04BN7.js">
 		<link rel="modulepreload" href="/yukihira/_app/immutable/chunks/runtime.BT8qFkc0.js">
-		<link rel="modulepreload" href="/yukihira/_app/immutable/chunks/paths.BuQ61vC6.js">
-		<link rel="modulepreload" href="/yukihira/_app/immutable/entry/app.BsbD6BqC.js">
+		<link rel="modulepreload" href="/yukihira/_app/immutable/chunks/paths.Dvnu72-I.js">
+		<link rel="modulepreload" href="/yukihira/_app/immutable/entry/app.CgNpPgKp.js">
 		<link rel="modulepreload" href="/yukihira/_app/immutable/chunks/disclose-version.BdZn2vBI.js">
+		<link rel="modulepreload" href="/yukihira/_app/immutable/chunks/index-client.BdGKWncM.js">
+        <link rel="manifest" href="/yukihira/manifest.json">
 	</head>
 	<body data-sveltekit-preload-data="hover" class="noto-sans-jp-regular bg">
 		<div style="display: contents">
 			<script>
 				{
-					__sveltekit_1g8su6z = {
+					__sveltekit_1r5sv9t = {
 						base: "/yukihira",
 						assets: "/yukihira"
 					};
@@ -28,11 +30,17 @@
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("/yukihira/_app/immutable/entry/start.sS5N3WLi.js"),
-						import("/yukihira/_app/immutable/entry/app.BsbD6BqC.js")
+						import("/yukihira/_app/immutable/entry/start.BdZFVP2U.js"),
+						import("/yukihira/_app/immutable/entry/app.CgNpPgKp.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element);
 					});
+
+					if ('serviceWorker' in navigator) {
+						addEventListener('load', function () {
+							navigator.serviceWorker.register('/yukihira/service-worker.js');
+						});
+					}
 				}
 			</script>
 		</div>
