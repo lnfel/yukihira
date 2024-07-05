@@ -200,6 +200,12 @@
             animation: none;
         }
 
+        header.group:has(label>input[type='checkbox']:checked) ~ .overlay {
+            opacity: 0;
+            pointer-events: none;
+            animation: none;
+        }
+
         /**
          * Show navigation after resizing from small to medium screen
          * stagger-fade-out is lingering and resize observer might be overkill for this simple feature
