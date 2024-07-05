@@ -8,13 +8,18 @@
 
     function toggleNav(event: Event & { currentTarget: EventTarget & HTMLInputElement; }) {
         const navLinks = document.querySelectorAll('nav a')
+        const overlay = document.querySelector('.overlay')
 
         if (event.currentTarget.checked) {
+            overlay?.classList.remove('stagger-fade-out')
+            overlay?.classList.add('stagger-fade-in')
             navLinks.forEach((link) => {
                 link.classList.remove('stagger-fade-out')
                 link.classList.add('stagger-fade-in')
             })
         } else {
+            overlay?.classList.remove('stagger-fade-in')
+            overlay?.classList.add('stagger-fade-out')
             navLinks.forEach((link) => {
                 link.classList.remove('stagger-fade-in')
                 link.classList.add('stagger-fade-out')
@@ -69,10 +74,13 @@
     </nav>
 </header>
 
+<div style="--animation-order: 6; --fade-out-order: 5;" class="overlay stagger-fade-in absolute inset-0 bg-slate-900/90 z-[1]"></div>
+
 {@render children()}
 
 <style lang="postcss">
-    nav a.stagger-fade-in {
+    nav a.stagger-fade-in,
+    .overlay.stagger-fade-in {
         opacity: 0;
         pointer-events: none;
     }
@@ -96,7 +104,8 @@
         width: 100%;
     }
 
-    header.group:has(label>input[type='checkbox']:checked) nav a {
+    header.group:has(label>input[type='checkbox']:checked) nav a,
+    header.group:has(label>input[type='checkbox']:checked) ~ .overlay {
         opacity: 0;
         pointer-events: all;
         animation: header-fade-in 200ms calc(150ms * var(--animation-order)) forwards;
@@ -183,6 +192,12 @@
 
         nav a.stagger-fade-in {
             pointer-events: all;
+        }
+
+        .overlay.stagger-fade-in {
+            opacity: 0;
+            pointer-events: none;
+            animation: none;
         }
 
         /**
