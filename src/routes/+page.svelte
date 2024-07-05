@@ -33,7 +33,7 @@
         </div>
         <img src="./img/sushi_2.jpg" alt="Yukihira sushi" width="1000" height="667" class="w-full h-dvh object-cover overflow-hidden">
     </section>
-    <section id="about" class="h-dvh content-center bg-[url('/img/pagoda.png')] bg-left-bottom bg-no-repeat">
+    <section id="about" class="h-dvh content-center bg-[url('/img/pagoda.png')] bg-left-bottom bg-no-repeat overflow-clip">
         <div class="w-4/6 h-4/6 relative left-1/2 -translate-x-1/2">
             <div class="about-card-bg w-full h-full absolute -top-10 md:-top-5 bg-saddle-300 rounded-md shadow-md"></div>
             <div class="about-card-img w-full h-full absolute top-10 md:top-5 -right-10 md:-right-20 shadow-md">
@@ -51,7 +51,7 @@
             </div>
         </div>
     </section>
-    <section id="sushi" class="md:flex md:items-center md:justify-center md:h-[150dvh] bg-[url('/img/cooking-features.jpg')] bg-[#5e4138] bg-center bg-contain bg-no-repeat py-20">
+    <section id="sushi" class="md:flex md:items-center md:justify-center md:h-[150dvh] bg-[url('/img/cooking-features.jpg')] bg-[#5e4138] bg-center bg-contain bg-no-repeat py-20 overflow-clip">
         <div class="md:w-9/12 md:relative w-full h-full flex flex-col-reverse items-center">
             <div class="sushi-card-img w-3/6 md:w-fit md:absolute md:top-20 md:-left-10 md:bg-saddle-900 rounded-md md:shadow-md">
                 <img src="{base}/img/sushi_4.png" alt="Sushi" width="475" height="371" class="object-contain">
