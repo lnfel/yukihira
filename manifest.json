@@ -2,7 +2,7 @@
     "name": "Yukihira",
     "short_name": "Yukihira",
     "description": "Sushiya web sample.",
-    "start_url": "/",
+    "start_url": "/yukihira",
     "display": "standalone",
     "theme_color": "#4c3029",
     "icons": [
