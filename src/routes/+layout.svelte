@@ -153,14 +153,14 @@
         width: 100%;
     }
 
-    header.group:has(button>input[type='checkbox']:checked) nav a,
-    header.group:has(button>input[type='checkbox']:checked) ~ .overlay {
+    header.group:has(button.nav-toggle>input[type='checkbox']:checked) nav a,
+    header.group:has(button.nav-toggle>input[type='checkbox']:checked) ~ .overlay {
         opacity: 0;
         pointer-events: all;
         animation: header-fade-in 200ms calc(150ms * var(--animation-order)) forwards;
     }
 
-    /* header.group:has(button>input[type='checkbox']:not(:checked)) nav a {
+    /* header.group:has(button.nav-toggle>input[type='checkbox']:not(:checked)) nav a {
         opacity: 1;
         pointer-events: none;
         animation: header-fade-out 200ms calc(150ms * var(--fade-out-order)) forwards;
@@ -254,7 +254,7 @@
             animation: none;
         }
 
-        header.group:has(button>input[type='checkbox']:checked) ~ .overlay {
+        header.group:has(button.nav-toggle>input[type='checkbox']:checked) ~ .overlay {
             opacity: 0;
             pointer-events: none;
             animation: none;
