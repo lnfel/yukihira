@@ -5,25 +5,48 @@
     import { onMount } from 'svelte'
 
     let { children } = $props()
+    let navToggleCheckbox: HTMLInputElement | undefined = $state()
 
-    function toggleNav(event: Event & { currentTarget: EventTarget & HTMLInputElement; }) {
-        const navLinks = document.querySelectorAll('nav a')
-        const overlay = document.querySelector('.overlay')
+    function openNav(navLinks: NodeListOf<HTMLAnchorElement>, overlay: HTMLDivElement | null) {
+        overlay?.classList.remove('stagger-fade-out')
+        overlay?.classList.add('stagger-fade-in')
+        navLinks.forEach((link) => {
+            link.classList.remove('stagger-fade-out')
+            link.classList.add('stagger-fade-in')
+        })
+    }
 
-        if (event.currentTarget.checked) {
-            overlay?.classList.remove('stagger-fade-out')
-            overlay?.classList.add('stagger-fade-in')
-            navLinks.forEach((link) => {
-                link.classList.remove('stagger-fade-out')
-                link.classList.add('stagger-fade-in')
-            })
-        } else {
-            overlay?.classList.remove('stagger-fade-in')
-            overlay?.classList.add('stagger-fade-out')
-            navLinks.forEach((link) => {
-                link.classList.remove('stagger-fade-in')
-                link.classList.add('stagger-fade-out')
-            })
+    function closeNav(navLinks: NodeListOf<HTMLAnchorElement>, overlay: HTMLDivElement | null) {
+        overlay?.classList.remove('stagger-fade-in')
+        overlay?.classList.add('stagger-fade-out')
+        navLinks.forEach((link) => {
+            link.classList.remove('stagger-fade-in')
+            link.classList.add('stagger-fade-out')
+        })
+    }
+
+    function toggleNav(event: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement; }) {
+        event.stopPropagation()
+
+        const navLinks = document.querySelectorAll('nav a') as NodeListOf<HTMLAnchorElement>
+        const overlay = document.querySelector('.overlay') as HTMLDivElement | null
+
+        if (navToggleCheckbox instanceof HTMLInputElement) {
+            navToggleCheckbox.checked = !navToggleCheckbox.checked
+            navToggleCheckbox.checked
+                ? openNav(navLinks, overlay)
+                : closeNav(navLinks, overlay)
+        }
+    }
+
+    function handleEscapeKey(event: KeyboardEvent & { currentTarget: EventTarget & HTMLButtonElement; }) {
+        if (event instanceof KeyboardEvent && event.key === 'Escape') {
+            if (navToggleCheckbox instanceof HTMLInputElement) {
+                navToggleCheckbox.checked = false
+                const navLinks = document.querySelectorAll('nav a') as NodeListOf<HTMLAnchorElement>
+                const overlay = document.querySelector('.overlay') as HTMLDivElement | null
+                closeNav(navLinks, overlay)
+            }
         }
     }
 
@@ -44,6 +67,31 @@
 
     onMount(() => {
         detectSWUpdate()
+
+        const navLinks = document.querySelectorAll('nav a') as NodeListOf<HTMLAnchorElement>
+        const navToggleButton = document.querySelector('button.nav-toggle')
+        if (navToggleButton instanceof HTMLButtonElement) {
+            const mediaQuery = matchMedia("(min-width: 768px)")
+            /**
+             * Close nav menu on small screens when clicking on nav links
+             */
+            if (!mediaQuery.matches) {
+                navLinks.forEach((navLink) => {
+                    navLink.onclick = () => {
+                        navToggleButton.click()
+                    }
+                })
+            }
+
+            /**
+             * Close nav menu when clicking outside of nav elements
+             */
+            document.documentElement.onclick = () => {
+                if (navToggleCheckbox instanceof HTMLInputElement && navToggleCheckbox.checked) {
+                    navToggleButton.click()
+                }
+            }
+        }
     })
 </script>
 
@@ -58,12 +106,13 @@
         <h1 class="sr-only">Yukihira</h1>
     </a>
 
-    <label for="nav-toggle">
-        <input onchange={toggleNav} type="checkbox" id="nav-toggle" /> 
+    <!-- for="nav-toggle" -->
+    <button onclick={toggleNav} onkeyup={handleEscapeKey} class="nav-toggle outline-none">
+        <input bind:this={navToggleCheckbox} type="checkbox" id="nav-toggle-checkbox" /> 
         <span></span>
         <span></span>
         <span></span>
-    </label>
+    </button>
 
     <!-- before:absolute before:inset-0 before:backdrop-blur-md -->
     <nav class="flex group-[&:has(label>input[type='checkbox']:checked)]:flex md:group-[&:has(label>input[type='checkbox']:not(:checked))]:flex w-full md:w-fit absolute md:static top-full left-0 md:flex flex-col md:flex-row items-end md:items-center gap-4 text-saddle-100 tracking-wider px-4 md:px-0">
@@ -74,7 +123,7 @@
     </nav>
 </header>
 
-<div style="--animation-order: 6; --fade-out-order: 5;" class="overlay stagger-fade-in absolute inset-0 bg-slate-900/90 z-[1]"></div>
+<div style="--animation-order: 6; --fade-out-order: 5;" class="overlay stagger-fade-in fixed inset-0 bg-slate-900/90 z-[1]"></div>
 
 {@render children()}
 
@@ -104,14 +153,14 @@
         width: 100%;
     }
 
-    header.group:has(label>input[type='checkbox']:checked) nav a,
-    header.group:has(label>input[type='checkbox']:checked) ~ .overlay {
+    header.group:has(button>input[type='checkbox']:checked) nav a,
+    header.group:has(button>input[type='checkbox']:checked) ~ .overlay {
         opacity: 0;
         pointer-events: all;
         animation: header-fade-in 200ms calc(150ms * var(--animation-order)) forwards;
     }
 
-    /* header.group:has(label>input[type='checkbox']:not(:checked)) nav a {
+    /* header.group:has(button>input[type='checkbox']:not(:checked)) nav a {
         opacity: 1;
         pointer-events: none;
         animation: header-fade-out 200ms calc(150ms * var(--fade-out-order)) forwards;
@@ -148,39 +197,44 @@
     }
 
     /* https://codepen.io/Danilo06/pen/PoNNvGm */
-    label[for="nav-toggle"] {
-        @apply flex flex-col w-8 cursor-pointer space-y-1.5 md:hidden;
+    button.nav-toggle {
+        /* space-y-1.5 */
+        @apply flex flex-col w-[70px] cursor-pointer md:hidden scale-50;
     }
-    label[for="nav-toggle"] span {
-        @apply bg-saddle-100 rounded-md h-1;
-        transition: .4s  cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    button.nav-toggle span {
+        @apply bg-saddle-100 rounded-lg h-[7px] my-[7px];
+        transition: .4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
     }
-    label[for="nav-toggle"] span:nth-of-type(1) {
+    button.nav-toggle span:nth-of-type(1) {
         @apply w-1/2;
     }
 
-    label[for="nav-toggle"] span:nth-of-type(3) {
+    button.nav-toggle span:nth-of-type(2) {
+        @apply w-full;
+    }
+
+    button.nav-toggle span:nth-of-type(3) {
         width: 75%;
     }
 
-    label[for="nav-toggle"] input[type="checkbox"] {
+    button.nav-toggle input[type="checkbox"] {
         @apply invisible;
     }
 
-    label[for="nav-toggle"] input[type="checkbox"]:checked ~ span:nth-of-type(1) {
+    button.nav-toggle input[type="checkbox"]:checked ~ span:nth-of-type(1) {
         transform-origin: bottom;
-        transform: rotateZ(45deg) translate(5px, 0px);
+        transform: rotateZ(45deg) translate(8px, 0px);
     }
 
-    label[for="nav-toggle"] input[type="checkbox"]:checked ~ span:nth-of-type(2) {
+    button.nav-toggle input[type="checkbox"]:checked ~ span:nth-of-type(2) {
         transform-origin: top;
         transform: rotateZ(-45deg);
     }
 
-    label[for="nav-toggle"] input[type="checkbox"]:checked ~ span:nth-of-type(3) {
+    button.nav-toggle input[type="checkbox"]:checked ~ span:nth-of-type(3) {
         transform-origin: bottom;
         width: 50%;
-        transform: translate(15px, -5px) rotateZ(45deg);
+        transform: translate(30px, -11px) rotateZ(45deg);
     }
 
     @media (min-width: 768px) {
@@ -200,7 +254,7 @@
             animation: none;
         }
 
-        header.group:has(label>input[type='checkbox']:checked) ~ .overlay {
+        header.group:has(button>input[type='checkbox']:checked) ~ .overlay {
             opacity: 0;
             pointer-events: none;
             animation: none;
