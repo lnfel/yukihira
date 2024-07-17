@@ -12,7 +12,7 @@
 </script>
 
 <main>
-    <section class="intro h-dvh relative before:absolute before:inset-0 before:bg-slate-800/70">
+    <section class="intro h-dvh relative before:absolute before:inset-0 before:bg-slate-800/70 transition-[height] duration-200">
         <div class="absolute inset-0 text-center content-center">
             <h2 class="intro-logo text-saddle-100 text-6xl tracking-wider">
                 <span class="relative">
@@ -31,9 +31,10 @@
                 <span class="sr-only">Enter sushiya</span>
             </a>
         </div>
-        <img src="./img/sushi_2.jpg" alt="Yukihira sushi" width="1000" height="667" class="w-full h-dvh object-cover overflow-hidden">
+        <img src="./img/sushi_2.jpg" alt="Yukihira sushi" width="1000" height="667" class="w-full h-full object-cover overflow-hidden">
     </section>
-    <section id="about" class="h-dvh content-center bg-[url('/img/pagoda.png')] bg-left-bottom bg-no-repeat overflow-clip">
+
+    <section id="about" class="h-dvh content-center bg-[url('/img/pagoda.png')] bg-left-bottom bg-no-repeat overflow-clip transition-[height] duration-200">
         <div class="w-4/6 h-4/6 relative left-1/2 -translate-x-1/2">
             <div class="about-card-bg w-full h-full absolute -top-10 md:-top-5 bg-saddle-300 rounded-md shadow-md"></div>
             <div class="about-card-img w-full h-full absolute top-10 md:top-5 -right-10 md:-right-20 shadow-md">
@@ -51,6 +52,7 @@
             </div>
         </div>
     </section>
+
     <section id="sushi" class="md:flex md:items-center md:justify-center md:h-[150dvh] bg-[url('/img/cooking-features.jpg')] bg-[#5e4138] bg-center bg-contain bg-no-repeat py-20 overflow-clip">
         <div class="md:w-9/12 md:relative w-full h-full flex flex-col-reverse items-center">
             <div class="sushi-card-img w-3/6 md:w-fit md:absolute md:top-20 md:-left-10 md:bg-saddle-900 rounded-md md:shadow-md">
@@ -79,8 +81,9 @@
             </div>
         </div>
     </section>
+
     <!-- bg-[url('img/jean-de-lessard-izakaya-kinoya-restaurant-montreal-designboom.jpg')] bg-cover bg-no-repeat bg-bottom -->
-    <section id="contact" class="md:flex md:items-center md:justify-center h-dvh py-20">
+    <section id="contact" class="md:flex md:items-center md:justify-center h-dvh py-20 transition-[height] duration-200">
         <div class="w-full h-full flex flex-col items-center">
             <div class="w-[40ch] md:w-[60ch] md:max-w-full md:rounded-md md:shadow-md p-4 space-y-6">
                 <h2 class="relative text-3xl text-saddle-100 tracking-wider py-6 after:absolute after:bottom-0 after:left-0 after:w-10 md:after:w-20 after:border-b-4 after:border-saddle-400">
@@ -125,6 +128,7 @@
             </div>
         </div>
     </section>
+    
     <footer class="text-saddle-100 text-xs px-6 md:px-20 py-6 space-y-6">
         <div class="flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 md:gap-4">
             <a href="{base}/" class="logo flex items-center gap-2 outline-none">
