@@ -150,6 +150,10 @@
 {@render children()}
 
 <style lang="postcss">
+    nav {
+        pointer-events: none;
+    }
+
     nav a.stagger-fade-in,
     .overlay.stagger-fade-in {
         opacity: 0;
@@ -173,6 +177,10 @@
     :global(.logo:hover h1::after),
     :global(.logo:focus h1::after) {
         width: 100%;
+    }
+
+    header.group:has(button.nav-toggle>input[type='checkbox']:checked) nav {
+        pointer-events: all;
     }
 
     header.group:has(button.nav-toggle>input[type='checkbox']:checked) nav a,
