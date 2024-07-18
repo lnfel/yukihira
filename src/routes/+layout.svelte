@@ -97,6 +97,7 @@
 
         window.onscroll = () => {
             const header = document.querySelector('header')
+            const headerBackdropClass = ["backdrop-blur-sm", "bg-saddle-800/90"]
             if (header) {
                 const top = header.getBoundingClientRect().top
                 const scrollPosition = window.scrollY
@@ -104,9 +105,9 @@
                     ? false
                     : true
                 if ($page.url.pathname === '/order' && !scrollAtTop) {
-                    header.classList.add('bg-saddle-800/90')
+                    header.classList.add(...headerBackdropClass)
                 } else {
-                    header.classList.remove('bg-saddle-800/90')
+                    header.classList.remove(...headerBackdropClass)
                 }
             }
         }
