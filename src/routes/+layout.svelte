@@ -6,6 +6,7 @@
 
     let { children } = $props()
     let navToggleCheckbox: HTMLInputElement | undefined = $state()
+    let scrollAtTop = $state(true)
 
     function openNav(navLinks: NodeListOf<HTMLAnchorElement>, overlay: HTMLDivElement | null) {
         overlay?.classList.remove('stagger-fade-out')
@@ -92,6 +93,17 @@
                 }
             }
         }
+
+        window.onscroll = () => {
+            const header = document.querySelector('header')
+            if (header) {
+                const top = header.getBoundingClientRect().top
+                const scrollPosition = window.scrollY
+                scrollAtTop = top < 80 && scrollPosition > 80
+                    ? false
+                    : true
+            }
+        }
     })
 </script>
 
@@ -100,7 +112,9 @@
 </svelte:head>
 
 <!-- before:absolute before:inset-0 before:-z-10 before:backdrop-blur-md -->
-<header class="group fixed top-0 z-10 w-full flex items-center justify-between gap-2 px-4 md:px-20 py-6">
+<!-- bg-[radial-gradient(transparent_0.75px,_theme(colors.saddle.800_/_1)_0.75px)] bg-[length:4px_4px] -->
+<!-- bg-saddle-800/90 -->
+<header class="group fixed top-0 z-10 w-full flex items-center justify-between gap-2 px-4 md:px-20 {scrollAtTop ? 'py-6' : 'py-1'} transition-all duration-200">
     <a href="{base}/" style="--animation-order: 7;" class="logo stagger-fade-in rounded-md outline-none border border-transparent hover:border-saddle-100 focus:border-saddle-100">
         <img src="{base}/img/yukihira_logo-square.png" alt="Yukihira logo" width="70" height="70">
         <h1 class="sr-only">Yukihira</h1>
