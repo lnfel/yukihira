@@ -11,6 +11,10 @@
     }
 </script>
 
+<svelte:head>
+    <title>Sushiya | Yukihira</title>
+</svelte:head>
+
 <main>
     <section class="intro h-dvh relative before:absolute before:inset-0 before:bg-slate-800/70 transition-[height] duration-200">
         <div class="absolute inset-0 text-center content-center">
