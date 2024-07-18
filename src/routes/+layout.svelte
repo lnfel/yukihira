@@ -141,7 +141,7 @@
         <a href="{base}{$page.url.pathname === '/order' ? '/' : ''}#about" style="--animation-order: 7; --fade-out-order: 4;" class="nav-link stagger-fade-in relative outline-none">About Yukihira</a>
         <a href="{base}{$page.url.pathname === '/order' ? '/' : ''}#sushi" style="--animation-order: 8; --fade-out-order: 3;" class="nav-link stagger-fade-in relative outline-none">Sushi</a>
         <a href="{base}{$page.url.pathname === '/order' ? '/' : ''}#contact" style="--animation-order: 9; --fade-out-order: 2;" class="nav-link stagger-fade-in relative outline-none">Contact Us</a>
-        <a href="{base}#order" style="--animation-order: 10; --fade-out-order: 1;" class="stagger-fade-in relative outline-none">Order</a>
+        <a href="{base}/order" style="--animation-order: 10; --fade-out-order: 1;" class="nav-button stagger-fade-in relative bg-saddle-100 text-saddle-900 rounded-md outline-none hover:bg-saddle-300 ring-2 ring-transparent ring-offset-2 ring-offset-transparent focus:ring-offset-saddle-900 focus:ring-saddle-500 focus:border-saddle-500 font-medium px-4 py-2">Order</a>
     </nav>
 </header>
 
@@ -160,7 +160,7 @@
         pointer-events: none;
     }
 
-    nav a::after,
+    nav a.nav-link::after,
     :global(.logo h1::after) {
         content: "";
         width: 0px;
@@ -172,8 +172,8 @@
         transition: all 200ms ease-in-out;
     }
 
-    nav a:hover::after,
-    nav a:focus::after,
+    nav a.nav-link:hover::after,
+    nav a.nav-link:focus::after,
     :global(.logo:hover h1::after),
     :global(.logo:focus h1::after) {
         width: 100%;
