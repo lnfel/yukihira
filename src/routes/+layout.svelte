@@ -108,10 +108,6 @@
     })
 </script>
 
-<svelte:head>
-    <title>Sushiya | Yukihira</title>
-</svelte:head>
-
 <!-- before:absolute before:inset-0 before:-z-10 before:backdrop-blur-md -->
 <!-- bg-[radial-gradient(transparent_0.75px,_theme(colors.saddle.800_/_1)_0.75px)] bg-[length:4px_4px] -->
 <!-- bg-saddle-800/90 -->
