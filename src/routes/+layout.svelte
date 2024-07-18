@@ -3,6 +3,7 @@
 
     import { base } from '$app/paths'
     import { onMount } from 'svelte'
+    import { page } from '$app/stores'
 
     let { children } = $props()
     let navToggleCheckbox: HTMLInputElement | undefined = $state()
@@ -128,11 +129,18 @@
         <span></span>
     </button>
 
-    <!-- before:absolute before:inset-0 before:backdrop-blur-md -->
+    <!-- 
+        hydration_attribute_changed
+        https://github.com/sveltejs/kit/pull/9220
+        i.e.
+        ```
+        The `href` attribute on `<a href=".#about" style="--animation-order: 7; --fade-out-order: 4;" class="stagger-fade-in relative outline-none svelte-622oet">...</a>` changed its value between server and client renders. The client value, `#about`, will be ignored in favour of the server value
+        ```
+    -->
     <nav class="flex group-[&:has(label>input[type='checkbox']:checked)]:flex md:group-[&:has(label>input[type='checkbox']:not(:checked))]:flex w-full md:w-fit absolute md:static top-full left-0 md:flex flex-col md:flex-row items-end md:items-center gap-4 text-saddle-100 tracking-wider px-4 md:px-0">
-        <a href="{base}#about" style="--animation-order: 7; --fade-out-order: 4;" class="stagger-fade-in relative outline-none">About Yukihira</a>
-        <a href="{base}#sushi" style="--animation-order: 8; --fade-out-order: 3;" class="stagger-fade-in relative outline-none">Sushi</a>
-        <a href="{base}#contact" style="--animation-order: 9; --fade-out-order: 2;" class="stagger-fade-in relative outline-none">Contact Us</a>
+        <a href="{base}{$page.url.pathname === '/order' ? '/' : ''}#about" style="--animation-order: 7; --fade-out-order: 4;" class="nav-link stagger-fade-in relative outline-none">About Yukihira</a>
+        <a href="{base}{$page.url.pathname === '/order' ? '/' : ''}#sushi" style="--animation-order: 8; --fade-out-order: 3;" class="nav-link stagger-fade-in relative outline-none">Sushi</a>
+        <a href="{base}{$page.url.pathname === '/order' ? '/' : ''}#contact" style="--animation-order: 9; --fade-out-order: 2;" class="nav-link stagger-fade-in relative outline-none">Contact Us</a>
         <a href="{base}#order" style="--animation-order: 10; --fade-out-order: 1;" class="stagger-fade-in relative outline-none">Order</a>
     </nav>
 </header>
