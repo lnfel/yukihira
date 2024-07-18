@@ -103,6 +103,11 @@
                 scrollAtTop = top < 80 && scrollPosition > 80
                     ? false
                     : true
+                if ($page.url.pathname === '/order' && !scrollAtTop) {
+                    header.classList.add('bg-saddle-800/90')
+                } else {
+                    header.classList.remove('bg-saddle-800/90')
+                }
             }
         }
     })
