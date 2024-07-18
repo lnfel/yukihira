@@ -25,7 +25,7 @@
             <Select label="Category" options={categories} {defaultSelected} bind:selectedOption />
         </div>
 
-        <div class="grid grid-cols-2 lg:grid-cols-5 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
             <!-- before:absolute before:inset-0 before:bg-slate-800/50 -->
             {#each products.filter((item) => selectedOption === 'all' ? true : item.categories.map((c) => c.toLowerCase()).includes(selectedOption)) as product}
                 <div class="group aspect-square lg:aspect-[3/4] relative bg-saddle-100 text-saddle-100 rounded-md overflow-hidden">
