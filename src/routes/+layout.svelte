@@ -129,6 +129,7 @@
         <span></span>
         <span></span>
         <span></span>
+        <span class="sr-only">Toggle navigation menu</span>
     </button>
 
     <!-- 
