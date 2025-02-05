@@ -72,6 +72,9 @@
 
         const navLinks = document.querySelectorAll('nav a') as NodeListOf<HTMLAnchorElement>
         const navToggleButton = document.querySelector('button.nav-toggle')
+        setTimeout(() => {
+            navToggleButton?.classList.remove("stagger-fade-in")
+        }, 1250)
         if (navToggleButton instanceof HTMLButtonElement) {
             const mediaQuery = matchMedia("(min-width: 768px)")
             /**
@@ -124,7 +127,7 @@
     </a>
 
     <!-- for="nav-toggle" -->
-    <button onclick={toggleNav} onkeyup={handleEscapeKey} class="nav-toggle outline-none">
+    <button onclick={toggleNav} onkeyup={handleEscapeKey} style="--animation-order: 7;" class="nav-toggle stagger-fade-in outline-none">
         <input bind:this={navToggleCheckbox} type="checkbox" id="nav-toggle-checkbox" /> 
         <span></span>
         <span></span>
@@ -205,7 +208,8 @@
         animation: header-fade-out 200ms calc(150ms * var(--fade-out-order)) forwards;
     }
 
-    .logo.stagger-fade-in {
+    .logo.stagger-fade-in,
+    .nav-toggle.stagger-fade-in {
         opacity: 0;
         pointer-events: all;
         animation: header-fade-in 200ms calc(150ms * var(--animation-order)) forwards;
