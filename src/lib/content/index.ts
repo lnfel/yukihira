@@ -1,6 +1,6 @@
 type Category = "Donburi" | "Sushi" | "Drinks" | "Best Sellers"
 type Categories = Category[]
-type Product = {
+export type Product = {
     name: string
     categories: Categories,
     image: string,
