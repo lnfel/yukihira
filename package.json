@@ -9,7 +9,7 @@
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"gh:deploy": "pnpm build && pnpm gh-pages -d build -t true",
+		"gh:deploy": "pnpm build && pnpm gh-pages -d build -t",
 		"pwa:assets:generate": "pwa-assets-generator --preset minimal static/yukihira-logo.png"
 	},
 	"devDependencies": {
